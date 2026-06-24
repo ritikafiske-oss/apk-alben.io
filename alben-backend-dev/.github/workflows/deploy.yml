@@ -1,0 +1,65 @@
+name: Deploy to Production VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy project files to VPS
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          source: "./"
+          target: "${{ secrets.DEPLOYMENT_PATH }}"
+
+      - name: Deploy on VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            set -e
+            echo "Starting deployment on VPS..."
+
+            cd ${{ secrets.DEPLOYMENT_PATH }}
+
+            # Build and restart container with zero downtime
+            echo "Building and restarting container..."
+            cd docker
+            sudo docker compose -f docker-compose.yml --env-file ../.env up -d --build
+            cd ..
+
+            # Wait for container to be ready
+            sleep 5
+
+            # Verify container is running
+            if sudo docker ps | grep -q alben-backend; then
+              echo "✓ Deployment successful! Container is running."
+            else
+              echo "✗ Deployment failed! Container is not running."
+              sudo docker logs alben-backend
+              exit 1
+            fi
+
+            # Clean up old images
+            sudo docker image prune -f
+            echo "Deployment completed successfully!"
+
+      - name: Notify on failure
+        if: failure()
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            echo "Deployment failed! Check the logs."

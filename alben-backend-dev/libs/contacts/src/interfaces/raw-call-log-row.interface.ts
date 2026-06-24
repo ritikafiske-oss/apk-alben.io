@@ -1,0 +1,30 @@
+export interface RawCallLogRow {
+  id: string | number;
+  mobile: string;
+  start_call_at: Date | string | null;
+  duration: string | number | null;
+  status: string;
+  type: string;
+  recording_url: string | null;
+  contact_id: string | number;
+  product_id?: string | number | null;
+  last_contact_status_id?: string | number | null;
+  note_id?: string | number | null;
+  user_id?: string | number;
+  latitude?: string | number;
+  longitude?: string | number;
+  created_at?: Date | string;
+  contact_firstname?: string;
+  contact_lastname?: string;
+  contact_mobile?: string;
+  contact_business_name?: string;
+  contact_designation?: string;
+  contact_email?: string;
+  contact_alternate_number?: string;
+  contact_type?: string;
+  product_name?: string;
+  note_description?: string | null;
+  note_reminder_datetime?: string | null;
+  note_u_firstname?: string | null;
+  note_u_lastname?: string | null;
+}

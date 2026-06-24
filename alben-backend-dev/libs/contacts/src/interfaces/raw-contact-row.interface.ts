@@ -1,0 +1,34 @@
+export interface RawContactRow {
+  is_manualdial: number | null;
+  is_autodial: number | null;
+  user_product_contact_id: string | null;
+  attempts: number | null;
+  id: string;
+  firstname: string | null;
+  lastname: string | null;
+  mobile: string;
+  business_name: string | null;
+  designation: string | null;
+  email: string | null;
+  alternate_number: string | null;
+  contact_type: string;
+  created_at: string | null;
+  note_id: string | null;
+  note_description: string | null;
+  note_reminder_datetime: string | null;
+  note_created_at: string | null;
+  note_user_id: string | null;
+  note_for_note: string | null;
+  ncb_id: string | null;
+  ncb_firstname: string | null;
+  ncb_lastname: string | null;
+  p_id: string | null;
+  p_name: string | null;
+  is_service: number | null;
+  cs_id: string | null;
+  cs_name: string | null;
+  cs_color_code: string | null;
+  cs_is_hide: number | null;
+  cs_is_unassigned: number | null;
+  latest_note: string | null;
+}

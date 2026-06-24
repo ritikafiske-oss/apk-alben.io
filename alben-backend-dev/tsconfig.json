@@ -1,0 +1,81 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "resolvePackageJsonExports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2023",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": false,
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@app/localization": [
+        "libs/localization/src"
+      ],
+      "@app/localization/*": [
+        "libs/localization/src/*"
+      ],
+      "@libs/authentication": [
+        "libs/authentication/index"
+      ],
+      "@libs/common": [
+        "libs/common/index"
+      ],
+      "@libs/contact-status": [
+        "libs/contact-status/index"
+      ],
+      "@libs/contacts": [
+        "libs/contacts/index"
+      ],
+      "@libs/dashboard": [
+        "libs/dashboard/index"
+      ],
+      "@libs/health": [
+        "libs/health/index"
+      ],
+      "@libs/localization": [
+        "libs/localization/index"
+      ],
+      "@libs/notes": [
+        "libs/notes/index"
+      ],
+      "@libs/notifications": [
+        "libs/notifications/index"
+      ],
+      "@libs/products": [
+        "libs/products/index"
+      ],
+      "@libs/services": [
+        "libs/services/index"
+      ],
+      "@libs/storage": [
+        "libs/storage/index"
+      ],
+      "@libs/users": [
+        "libs/users/index"
+      ],
+      "@libs/reports": [
+        "libs/reports/index"
+      ],
+      "@libs/visits": [
+        "libs/visits/index"
+      ],
+      "@libs/locations": [
+        "libs/locations/index"
+      ]
+    }
+  }
+}

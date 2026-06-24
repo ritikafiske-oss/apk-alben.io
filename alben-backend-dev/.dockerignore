@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Development files
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Testing
+coverage/
+.nyc_output/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.github/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Documentation (exclude from Docker build, but keep docker/ folder)
+*.md
+!docker/*.md
+docs/
+guidelines/
+
+# CI/CD
+.gitlab-ci.yml
+.travis.yml
+
+# Misc
+scripts/
