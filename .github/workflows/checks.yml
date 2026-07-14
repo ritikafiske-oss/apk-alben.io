@@ -39,5 +39,5 @@ jobs:
       run: pnpm run lint
 
     - name: Build
-      nworking-directory: alben-backend-dev
+      working-directory: alben-backend-dev
       run: pnpm run build
