@@ -4,15 +4,23 @@ BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 echo "Checking branch status before push..."
 
-git fetch origin "$BRANCH"
+git fetch origin
+
+REMOTE_BRANCH="origin/$BRANCH"
+
+# Allow first push of a new branch
+if ! git show-ref --verify --quiet refs/remotes/$REMOTE_BRANCH; then
+    echo "✅ New branch detected. First push allowed."
+    exit 0
+fi
 
 LOCAL=$(git rev-parse HEAD)
-REMOTE=$(git rev-parse origin/"$BRANCH")
+REMOTE=$(git rev-parse $REMOTE_BRANCH)
 
 if [ "$LOCAL" != "$REMOTE" ]; then
     echo ""
     echo "❌ Push blocked!"
-    echo "Your branch is not synchronized with origin/$BRANCH"
+    echo "Your branch is not updated with $REMOTE_BRANCH"
     echo ""
     echo "Please run:"
     echo "git pull origin $BRANCH"
