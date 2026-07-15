@@ -1,0 +1,26 @@
+#!/bin/bash
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+echo "Checking branch status before push..."
+
+git fetch origin "$BRANCH"
+
+LOCAL=$(git rev-parse HEAD)
+REMOTE=$(git rev-parse origin/"$BRANCH")
+
+if [ "$LOCAL" != "$REMOTE" ]; then
+    echo ""
+    echo "❌ Push blocked!"
+    echo "Your branch is not synchronized with origin/$BRANCH"
+    echo ""
+    echo "Please run:"
+    echo "git pull origin $BRANCH"
+    echo ""
+    echo "Resolve conflicts if required, then push again."
+    exit 1
+fi
+
+echo "✅ Branch is synchronized. Push allowed."
+
+exit 0
